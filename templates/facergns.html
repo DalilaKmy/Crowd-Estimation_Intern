@@ -1,0 +1,123 @@
+<head>
+<style>
+
+.example_c {
+font: 15px/30px Georgia;
+text-decoration: none;
+background: #AD1867 ;
+padding: 3px;
+border-radius:1em;
+border: 1px solid black !important;
+/*border: 4px solid #494949;*/
+display: inline-block;
+transition: all 0.4s ease 0s;
+color: white !important;
+
+/*color: white;
+text-decoration: none;
+background: #AD1867;
+padding: 5px;
+border-color:white;
+border-radius:1em;
+/*border: 4px solid #494949;*/
+display: inline-block;
+transition: all 0.4s ease 0s;* 
+}
+
+.example_c:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.example_c:hover {
+color: white !important;
+font: 19px/30px Georgia;
+color: #ffffff;
+padding: 5px;
+background: #AD1867;
+border: 4px solid #494949;
+transition: all 0.4s ease 0s;
+}
+
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+  height: 25%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2e0eb}
+
+.responsive {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+.floating{
+  -ms-flex:0 
+  0 25%;flex:0 
+  0 25%;max-width:50%
+}
+
+
+@media all and (max-width:30em){
+ a.button1{
+  display:block;
+  margin:0.4em auto;
+ }
+}
+
+</style>
+</head>
+
+{% extends "base.html" %}
+{% block title %}Visual Recognition Synapse{% endblock %}
+
+
+{% block content %}
+
+     <img class="logosynapse" src="{{ url_for('static', filename='logo.png') }}" height="auto" width="40%" style="padding: 10px" style="position: fixed;">
+
+    <div class="col-12" style="padding-top: 20px">
+
+        <img src="{{ url_for('video_feed') }}" class="responsive" style="padding-bottom: 10px">
+        
+    </div>
+    <div class="col-12" style="padding-top: 20px">
+      <table role="table" class="table" id="namesAll">
+        <thead role="rowgroup">
+          <tr role="row">
+            <th role="columnheader" scope="col">People In</th>
+            <th role="columnheader" scope="col">People Out</th>
+            <th role="columnheader" scope="col">Total People</th>
+            <th role="columnheader" scope="col">Time</th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+
+          {% for nama in names %}
+          <tr role="row" id ={{ nama.id }}>
+            <th role="cell" scope="row">{{ nama.peopleIn }}</th>
+            <td role="cell">{{ nama.peopleOut }}</td>
+            <td role="cell">{{ nama.totalPeople }}</td>
+            <td role="cell">{{ nama.dateTime }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  
+  </div>
+</div>
+
+{% endblock %}
